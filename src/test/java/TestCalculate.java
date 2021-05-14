@@ -18,4 +18,16 @@ public class TestCalculate {
     public void singleValueIsInput(){
         assertEquals(cal.calculate("1"), 1);
     }
+
+    public void twoNumberCommaSeparated(){
+        assertEquals(cal.calculate("1,2"),3);
+    }
+
+    public void twoNumbersNewLineSeparated(){
+        assertEquals(cal.calculate("1\n2"), 3);
+    }
+
+    public void threeNumbersCommaSeparated(){
+        assertEquals(cal.calculate("1,2,3"), 6);
+    }
 }
