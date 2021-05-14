@@ -4,7 +4,15 @@ public class Calculator {
             return 0;
         }
         else{
-            String[] Numbers = s.split(",|\n");
+            String delimiter = ",";
+            if(s.matches("//(.*)\n(.*)")){
+                delimiter = Character.toString(s.charAt(2));
+                s = s.substring(4);
+            }
+
+            String NewDelimiter = delimiter + "|\n";
+            String[] Numbers = s.split(NewDelimiter);
+
             if(Numbers.length == 1){
                 return Integer.parseInt(Numbers[0]);
             }
@@ -14,11 +22,29 @@ public class Calculator {
         }
     }
 
-    public int GetSum(String[] Numbers){
-        int sum = 0;
-        for(String Cur: Numbers){
-            sum = sum + Integer.parseInt(Cur);
+    private static int GetSum(String[] numbers){
+        int total = 0;
+        String negString = "";
+
+        for(String number : numbers){
+            if(Integer.parseInt(number) < 0){
+                if(negString.equals("")){
+                    negString = number;
+                }
+                else {
+                    negString += ("," + number);
+                }
+            }
+
+            if(Integer.parseInt(number) < 1000) {
+                total = total + Integer.parseInt(number);
+            }
         }
-        return sum;
+
+        if(!negString.equals("")){
+            throw new IllegalArgumentException("Negatives not allowed: " + negString);
+        }
+
+        return total;
     }
 }

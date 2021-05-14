@@ -30,4 +30,28 @@ public class TestCalculate {
     public void threeNumbersCommaSeparated(){
         assertEquals(cal.calculate("1,2,3"), 6);
     }
+
+    public void negativeInputReturnsException(){
+        try{
+            cal.calculate("-1,2");
+        }
+        catch(IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Negatives not allowed: -1");
+        }
+        try {
+            cal.calculate("2,-4,3,-5");
+        }
+        catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Negatives not allowed: -4,-5");
+        }
+    }
+
+    public void NumbersOverThousand(){
+        assertEquals(cal.calculate("1000,2"), 2);
+    }
+
+    public void NumberWithOtherSeparator(){
+        assertEquals(cal.calculate("//;\n1;2"),3);
+    }
+
 }
