@@ -11,6 +11,14 @@ Test driven development using kata (JAVA)
 6) Negative numbers throw an exception
 7) Numbers greater than 1000 are ignored
 
+## Packages Used
+
+TestNg ( we can use Junit as an alternative) 
+
+
+
+
+PS : added the ss.png to show the successfull results.
 
 
 
